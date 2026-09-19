@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: cloudops-backend-config
+  namespace: cloudops
+
+data:
+  NODE_ENV: production
+  PORT: "3000"

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: cloudops-backend
+  namespace: cloudops
+  labels:
+    app: cloudops-backend
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: cloudops-backend
+
+  template:
+    metadata:
+      labels:
+        app: cloudops-backend
+
+    spec:
+      containers:
+        - name: backend
+          image: cloudops-backend:k8s-test
+          imagePullPolicy: IfNotPresent
+
+          envFrom:
+            - configMapRef:
+                name: cloudops-backend-config
+
+          ports:
+            - containerPort: 3000
